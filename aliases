@@ -1,9 +1,12 @@
 alias up='cd ..'
 alias home='cd ~'
-alias code='cd ~/code'
-alias coe="cd ~/code/coe"
+alias code='cd ~/Code'
 alias dl="cd ~/Downloads"
 alias temp='cd ~/.temp'
+alias dotfiles="cd ~/Code/dotfiles"
+
+alias update="sudo apt update"
+alias upgrade="sudo apt upgrade"
 
 alias ci='composer install'
 alias cda='composer dumpautoload'

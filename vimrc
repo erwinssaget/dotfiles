@@ -22,6 +22,7 @@ Plugin 'christoomey/vim-tmux-navigator'       " For tmux
 Plugin 'sheerun/vim-polyglot'                 " Language syntax pack
 Plugin 'chriskempson/base16-vim'              " Easily switch colorscheme
 Plugin 'benmills/vimux'                       " Tmux commands
+Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles across projects"
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " Enable plugins and indents by filetype
@@ -39,8 +40,8 @@ set splitbelow                                " Always sets the split below
 set splitright                                " Always sets the split to the right
 set ts=4 sw=4
 set expandtab
-set list
-set listchars=trail:·
+"set list
+"set listchars=trail:·
 set laststatus=2
 set statusline=%=%{fugitive#statusline()}
 set mouse=a
@@ -50,7 +51,7 @@ let g:airline_section_y=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='base16'
-"let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 
 set hlsearch                                  " Highlight my searches
 set incsearch                                 " Search incrementally and jump to term
