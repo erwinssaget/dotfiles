@@ -7,6 +7,8 @@ alias dotfiles="cd ~/Code/dotfiles"
 
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
+alias upgrades="apt list --upgradeable"
+alias install="sudo apt install $1"
 
 alias ci='composer install'
 alias cda='composer dumpautoload'
