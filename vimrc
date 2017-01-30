@@ -52,7 +52,7 @@ let g:airline_section_y=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='base16'
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 
 set hlsearch                                  " Highlight my searches
 set incsearch                                 " Search incrementally and jump to term
