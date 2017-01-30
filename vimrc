@@ -22,7 +22,7 @@ Plugin 'christoomey/vim-tmux-navigator'       " For tmux
 Plugin 'sheerun/vim-polyglot'                 " Language syntax pack
 Plugin 'chriskempson/base16-vim'              " Easily switch colorscheme
 Plugin 'benmills/vimux'                       " Tmux commands
-Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles across projects"
+Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles across projects
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " Enable plugins and indents by filetype
@@ -45,6 +45,7 @@ set expandtab
 set laststatus=2
 set statusline=%=%{fugitive#statusline()}
 set mouse=a
+set autoread                                  " Automatically read changes
 
 let g:gitgutter_sign_column_always=1
 let g:airline_section_y=0
