@@ -11,6 +11,7 @@ alias upgrades="apt list --upgradeable"
 alias install="sudo apt install $1"
 
 alias ci='composer install'
+alias cu='composer update'
 alias cda='composer dumpautoload'
 
 alias art='php artisan'

@@ -15,7 +15,7 @@ compinit
 # End of lines added by compinstall
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:~/.config/composer/vendor/bin:$PATH
+export PATH=node_modules/.bin:$HOME/bin:/usr/local/bin:~/.config/composer/vendor/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/erwins/.oh-my-zsh
@@ -40,7 +40,7 @@ ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOQUIT=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git vi-mode tmux git-flow-avh)
+plugins=(git vi-mode sublime tmux git-flow)
 
 source $ZSH/oh-my-zsh.sh
 

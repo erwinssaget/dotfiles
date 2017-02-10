@@ -17,7 +17,6 @@ Plugin 'StanAngeloff/php.vim'                 " Syntax highlighting for php
 Plugin 'vim-airline/vim-airline'              " Statusline Plugin
 Plugin 'vim-airline/vim-airline-themes'       " Statusline Plugin
 Plugin 'airblade/vim-gitgutter'               " Shows diff in sign column
-"Plugin 'scrooloose/syntastic'                 " Syntax Checker
 Plugin 'christoomey/vim-tmux-navigator'       " For tmux
 Plugin 'sheerun/vim-polyglot'                 " Language syntax pack
 Plugin 'chriskempson/base16-vim'              " Easily switch colorscheme
@@ -58,30 +57,6 @@ set hlsearch                                  " Highlight my searches
 set incsearch                                 " Search incrementally and jump to term
 set smartcase                                 " Smart case search for uppercase
 set ignorecase                                " Case insensitive search
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_loc_list_height = 5
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
-
-"let g:syntastic_error_symbol = '❌'
-"let g:syntastic_style_error_symbol = '⁉️'
-"let g:syntastic_warning_symbol = '⚠️'
-"let g:syntastic_style_warning_symbol = '💩'
-
-"highlight link SyntasticErrorSign SignColumn
-"highlight link SyntasticWarningSign SignColumn
-"highlight link SyntasticStyleErrorSign SignColumn
-"highlight link SyntasticStyleWarningSign SignColumn
-
-"let g:syntastic_filetype_map={ "vue": "javascript"}
-"let g:syntastic_javascript_checkers=['eslint']
-"let g:syntastic_php_checkers=['php']
 
 " ======= Persistent Undo =============
  silent !mkdir ~/.vim/backups > /dev/null 2>&1
