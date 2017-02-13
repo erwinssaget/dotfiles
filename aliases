@@ -2,13 +2,14 @@ alias up='cd ..'
 alias home='cd ~'
 alias code='cd ~/Code'
 alias dl="cd ~/Downloads"
-alias temp='cd ~/.temp'
 alias dotfiles="cd ~/Code/dotfiles"
+alias notes="cd ~/ownCloud/Notes && vim"
 
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
 alias upgrades="apt list --upgradeable"
-alias install="sudo apt install $1"
+alias install="sudo apt install $*"
+alias uninstall="sudo apt remove $*"
 
 alias ci='composer install'
 alias cu='composer update'
@@ -18,10 +19,6 @@ alias art='php artisan'
 alias pam="php artisan migrate:refresh --seed"
 alias acc="php artisan cache:clear"
 alias routes='php artisan route:list'
-
-alias vpn='/opt/cisco/anyconnect/bin/vpn'
-alias vpnc='/opt/cisco/anyconnect/bin/vpn connect edge.spinen.net'
-alias vpnd='/opt/cisco/anyconnect/bin/vpn disconnect'
 
 alias vimrc='vim ~/.vimrc'
 alias zshconfig='vim ~/.zshrc'

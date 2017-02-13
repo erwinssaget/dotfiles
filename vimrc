@@ -96,7 +96,7 @@ nmap <C-m> :bnext<cr>
 nmap <Leader><space> :nohlsearch<cr>
 
 "write, then gulp
-nmap <Leader>g :!clear && gulp<cr>
+nmap <Leader>g :!clear && npm run dev<cr>
 nmap <Leader>p :!clear && phpunit<cr>
 nmap <Leader>pm :!clear && php artisan migrate:refresh --seed<cr>
 nmap <Leader>n :!clear && npm run unit<cr>
