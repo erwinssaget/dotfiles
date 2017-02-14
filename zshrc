@@ -23,7 +23,8 @@ export ZSH=/home/erwins/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+#ZSH_THEME="bureau"
+ZSH_THEME="erwins"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -40,7 +41,7 @@ ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOQUIT=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git vi-mode sublime tmux git-flow)
+plugins=(git sublime tmux)
 
 source $ZSH/oh-my-zsh.sh
 

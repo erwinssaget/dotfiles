@@ -5,11 +5,14 @@ alias dl="cd ~/Downloads"
 alias dotfiles="cd ~/Code/dotfiles"
 alias notes="cd ~/ownCloud/Notes && vim"
 
-alias update="sudo apt update"
-alias upgrade="sudo apt upgrade"
+alias update="sudo apt-get update"
+alias upgrade="sudo apt-get upgrade"
 alias upgrades="apt list --upgradeable"
 alias install="sudo apt install $*"
-alias uninstall="sudo apt remove $*"
+alias uninstall="sudo apt-get remove $*"
+alias addrepo="sudo add-apt-repository $1"
+alias removerepo="sudo add-apt-repository --remove $1"
+alias autoremove="sudo apt-get autoremove"
 
 alias ci='composer install'
 alias cu='composer update'
@@ -29,5 +32,8 @@ alias tconf="vim ~/.tmux.conf"
 alias tags="ctags -R --exclude=node_modules --exclude=public --exclude=resources --languages=-javascript"
 alias dre='docker rm $(docker ps -q -f status=exited)'
 
+alias gffs="git flow feature start"
+alias gfff="git flow feature finish"
 #wrapper around git add & commit
 gcaa() { git add --all && git commit -m "$*" }
+
