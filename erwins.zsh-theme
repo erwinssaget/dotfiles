@@ -1,7 +1,5 @@
 NEWLINE=$'\n'
-PROMPT=' %c%{$reset_color%} $(git_prompt_info)${NEWLINE} > '
-
-AZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+PROMPT='%c%{$reset_color%} $(git_prompt_info)${NEWLINE}> '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}["
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "

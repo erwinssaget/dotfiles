@@ -19,7 +19,6 @@ Plugin 'vim-airline/vim-airline-themes'       " Statusline Plugin
 Plugin 'airblade/vim-gitgutter'               " Shows diff in sign column
 Plugin 'christoomey/vim-tmux-navigator'       " For tmux
 Plugin 'sheerun/vim-polyglot'                 " Language syntax pack
-Plugin 'chriskempson/base16-vim'              " Easily switch colorscheme
 Plugin 'benmills/vimux'                       " Tmux commands
 Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles across projects
 call vundle#end()                             " End of plugins - required
@@ -27,20 +26,13 @@ call vundle#end()                             " End of plugins - required
 filetype plugin indent on                     " Enable plugins and indents by filetype
 let mapleader=','                             " Change <Leader> to comma
 syntax enable                                 " Enable syntax hhighlighting
-if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-endif
 set number
 set backspace=indent,eol,start                " Common backspace behavior
-set cursorline
 set hidden                                    " Allow hiding buffers w/ changes
 set splitbelow                                " Always sets the split below
 set splitright                                " Always sets the split to the right
 set ts=4 sw=4
 set expandtab
-"set list
-"set listchars=trail:·
 set laststatus=2
 set statusline=%=%{fugitive#statusline()}
 set mouse=a
@@ -50,7 +42,7 @@ let g:gitgutter_sign_column_always=1
 let g:airline_section_y=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='base16'
+let g:airline_theme='papercolor'
 let g:airline_powerline_fonts=0
 
 set hlsearch                                  " Highlight my searches
@@ -120,5 +112,4 @@ map <Leader>vc :VimuxClearRunnerHistory<CR>
 augroup autosourcing
     autocmd!
     autocmd BufWritePost .vimrc source %
-    autocmd FileType vue,html so ~/.vim/ftplugin/html_autoclosetag.vim
 augroup END
