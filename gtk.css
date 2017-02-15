@@ -8,18 +8,18 @@ headerbar entry,
 headerbar spinbutton,
 headerbar button,
 headerbar separator {
-    margin-top: 2px; /* same as headerbar side padding for nicer proportions */
-    margin-bottom: 2px;
+    margin-top: 1px; /* same as headerbar side padding for nicer proportions */
+    margin-bottom: 1px;
 }
 
 .default-decoration {
     min-height: 0; /* let the entry and button drive the titlebar size */
-    padding: 2px
+    padding: 1px
 }
 
 .default-decoration .titlebutton {
-    min-height: 26px; /* tweak these two props to reduce button size */
-    min-width: 26px;
+    min-height: 20px; /* tweak these two props to reduce button size */
+    min-width: 20px;
 }
 
 window.ssd headerbar.titlebar {
