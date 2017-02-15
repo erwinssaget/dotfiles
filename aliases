@@ -4,6 +4,7 @@ alias code='cd ~/Code'
 alias dl="cd ~/Downloads"
 alias dotfiles="cd ~/Code/dotfiles"
 alias notes="cd ~/ownCloud/Notes && vim"
+alias gtkcss="vim ~/.config/gtk-3.0/gtk.css"
 
 alias update="sudo apt-get update"
 alias upgrade="sudo apt-get upgrade"
