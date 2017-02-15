@@ -1,5 +1,8 @@
 #!/bin/sh
 
+CODE_DIR=~/Code
+DOT_DIR=~/Code/dotfiles
+
 # Set of things I do on new installs
 echo -e "Updating....\n\n"
 sudo apt update
@@ -47,10 +50,11 @@ cd dotfiles
 
 # Make symlinks
 echo -e "Symlinking Files...\n\n"
-ln -s aliases ~/.aliases
-ln -s vimrc ~/.vimrc
-ln -s tmux.conf ~/.tmux.conf
-ln -s zshrc ~/.zshrc
+ln -s $DOT_DIR/aliases ~/.aliases
+ln -s $DOT_DIR/vimrc ~/.vimrc
+ln -s $DOT_DIR/tmux.conf ~/.tmux.conf
+ln -s $DOT_DIR/zshrc ~/.zshrc
+ln -s $DOT_DIR/gtk.css ~/.config/gtk-3.0/gtk.css
 
 cd ~
 wget https://raw.githubusercontent.com/petervanderdoes/git-flow-completion/develop/git-flow-completion.zsh
