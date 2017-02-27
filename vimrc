@@ -21,12 +21,15 @@ Plugin 'christoomey/vim-tmux-navigator'       " For tmux
 Plugin 'sheerun/vim-polyglot'                 " Language syntax pack
 Plugin 'benmills/vimux'                       " Tmux commands
 Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles across projects
+Plugin 'othree/xml.vim'                       " Plugin for editing xml, html
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " Enable plugins and indents by filetype
 let mapleader=','                             " Change <Leader> to comma
 syntax enable                                 " Enable syntax hhighlighting
+set background=dark
 set number
+set cursorline
 set backspace=indent,eol,start                " Common backspace behavior
 set hidden                                    " Allow hiding buffers w/ changes
 set splitbelow                                " Always sets the split below
@@ -37,12 +40,18 @@ set laststatus=2
 set statusline=%=%{fugitive#statusline()}
 set mouse=a
 set autoread                                  " Automatically read changes
+set numberwidth=5
+set relativenumber
+hi Comment cterm=italic
+hi CursorLine cterm=NONE ctermbg=237 
+hi CursorLineNr cterm=NONE ctermfg=white
+hi LineNr cterm=NONE ctermfg=66
 
 let g:gitgutter_sign_column_always=1
 let g:airline_section_y=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='papercolor'
+let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts=0
 
 set hlsearch                                  " Highlight my searches
@@ -81,6 +90,9 @@ nmap <Leader>ev :tabedit $MYVIMRC<cr>
 " Nerdtree
 nmap <C-b> :NERDTreeToggle<cr>
 
+" Tabularize
+vmap <Leader>a :Tabularize /
+
 " Switch buffers easily
 nmap <C-m> :bnext<cr>
 
@@ -99,7 +111,6 @@ nmap <Leader>l :!clear && npm run lint<cr>
 nmap <Leader>lrw :e routes/web.php<cr>
 nmap <Leader>lra :e routes/api.php<cr>
 nmap <Leader>la :e config/app.php<cr>
-nmap <Leader>lg :e gulpfile.js<cr>
 nmap <Leader>le :e .env<cr>
 
 " Vimux

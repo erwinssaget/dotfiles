@@ -15,7 +15,7 @@ compinit
 # End of lines added by compinstall
 
 # If you come from bash you might have to change your $PATH.
-export PATH=node_modules/.bin:$HOME/bin:/usr/local/bin:~/.config/composer/vendor/bin:$PATH
+export PATH=node_modules/.bin:$HOME/bin:/usr/local/bin:~/.config/composer/vendor/bin:~/.config/spark-installer:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/erwins/.oh-my-zsh
@@ -55,3 +55,4 @@ source ~/.git-flow-completion.zsh
 #BASE16_SHELL=$HOME/.config/base16-shell/
 #[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
+export TERM=xterm-256color-italic
