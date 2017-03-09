@@ -22,6 +22,7 @@ Plugin 'sheerun/vim-polyglot'                 " Language syntax pack
 Plugin 'benmills/vimux'                       " Tmux commands
 Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles across projects
 Plugin 'othree/xml.vim'                       " Plugin for editing xml, html
+Plugin 'yuezk/weex.vim'                       " Plugin for weex
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " Enable plugins and indents by filetype
@@ -52,7 +53,7 @@ let g:airline_section_y=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='bubblegum'
-let g:airline_powerline_fonts=0
+let g:airline_powerline_fonts=1
 
 set hlsearch                                  " Highlight my searches
 set incsearch                                 " Search incrementally and jump to term

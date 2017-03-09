@@ -37,7 +37,7 @@ ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOQUIT=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git sublime tmux)
+plugins=(zsh-nvm git sublime tmux)
 
 source $ZSH/oh-my-zsh.sh
 
