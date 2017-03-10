@@ -55,6 +55,7 @@ ln -s $DOT_DIR/vimrc ~/.vimrc
 ln -s $DOT_DIR/tmux.conf ~/.tmux.conf
 ln -s $DOT_DIR/zshrc ~/.zshrc
 ln -s $DOT_DIR/gtk.css ~/.config/gtk-3.0/gtk.css
+ln -s $DOT_DIR/i3config ~/.config/i3/config
 
 cd ~
 wget https://raw.githubusercontent.com/petervanderdoes/git-flow-completion/develop/git-flow-completion.zsh
@@ -76,6 +77,9 @@ sudo apt-get update
 
 # 4. Install Spotify
 sudo apt-get install spotify-client
+
+# 4. Install i3
+sudo apt-get install i3 i3blocks
 
 # Goes last since we need to restart afterwards
 git clone https://github.com/chriskempson/base16-gnome-terminal.git ~/.config/base16-gnome-terminal
