@@ -1,23 +1,68 @@
-#!/bin/sh
+#!/bin/bash
 
+# Variables
+TEXT_COLOR='\033[0;34m'
+NOCOLOR='\033[0m'
+PROGRAMS=(git vim zsh tmux wget curl i3 i3blocks)
+PROGRAMS_TO_INSTALL=()
 CODE_DIR=~/Code
 DOT_DIR=~/Code/dotfiles
 
-# Set of things I do on new installs
-echo -e "Updating....\n\n"
-sudo apt update
+# Helper Functions
+displayText() {
+    echo -e "${TEXT_COLOR}$* ${NOCOLOR}\n";
+}
 
-sudo apt upgrade
+promptForProgramInstall() {
+    # For each program, ask the user if they want to install it
+    # If so add the program to install list
+    # Install specified programs afterward
+
+    for((i=0; i<${#PROGRAMS[@]}; i++ ));
+    do
+        read -p "Install ${PROGRAMS[$i]} (y/n)? " answer;
+        case ${answer:0:1} in
+            y|Y )
+                PROGRAMS_TO_INSTALL+=( ${PROGRAMS[$i]} )
+            ;;
+            * )
+            ;;
+        esac
+    done
+
+    displayText Installing ${#PROGRAMS_TO_INSTALL[@]} programs
+    sudo apt-get install -y ${PROGRAMS_TO_INSTALL[*]}
+}
+
+# ----------- Script Starts Here --------------------
+displayText Updating list of available packages...
+sudo apt-get update 
+
+displayText Installing newer versions of installed packages...
+sudo apt-get -y upgrade
+
+# Install some software
+displayText Would you like to install all programs \(${PROGRAMS[*]}\)
+read RESPONSE
+case ${RESPONSE:0:1} in
+    y|Y|yes )
+        displayText Installing ${#PROGRAMS[@]} programs
+        sudo apt-get install -y ${PROGRAMS[*]}
+    ;;
+    * )
+        promptForProgramInstall
+    ;;
+esac
 
 # Install php7
-echo -e "Installing php 7.0....\n\n"
+displayText Installing php 7.0...
 sudo apt-get install -y python-software-properties
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get upgrade
 sudo apt-get install -y php7.0 php7.0-cgi php7.0-cli php7.0-common php7.0-curl php7.0-dev php7.0-gd php7.0-xml php7.0-zip php7.0-mysql php7.0-pdo php7.0-mbstring
 
 # Install Composer
-echo -e "Installing Composer....\n\n"
+displayText Installing Composer...
 EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
@@ -33,19 +78,14 @@ php composer-setup.php --quiet
 rm composer-setup.php
 sudo mv composer.phar /usr/local/bin/composer
 
-# Laravel
+displayText Installing Laravel Installer globally
 composer global require "laravel/installer"
 
-# Install some software
-echo -e "Installing programs for development....\n\n"
-sudo apt install -y git vim zsh tmux wget curl i3 i3blocks
-
-echo -e "Making Code directory...\n\n"
+displayText Making Code directory...
 mkdir ~/Code
 cd ~/Code
 
-# Clone repo
-echo -e "Cloning dotfiles...\n\n"
+displayText Cloning dotfiles...
 git clone https://github.com/erwinsaget/dotfiles.git
 cd dotfiles
 
@@ -53,7 +93,7 @@ cd dotfiles
 mkdir ~/.config/i3
 
 # Make symlinks
-echo -e "Symlinking Files...\n\n"
+displayText Symlinking Files...
 ln -s $DOT_DIR/aliases ~/.aliases
 ln -s $DOT_DIR/vimrc ~/.vimrc
 ln -s $DOT_DIR/tmux.conf ~/.tmux.conf
