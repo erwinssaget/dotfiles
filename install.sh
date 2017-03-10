@@ -38,7 +38,7 @@ composer global require "laravel/installer"
 
 # Install some software
 echo -e "Installing programs for development....\n\n"
-sudo apt install -y git vim zsh tmux wget curl
+sudo apt install -y git vim zsh tmux wget curl i3 i3blocks
 
 echo -e "Making Code directory...\n\n"
 mkdir ~/Code
@@ -48,6 +48,9 @@ cd ~/Code
 echo -e "Cloning dotfiles...\n\n"
 git clone https://github.com/erwinsaget/dotfiles.git
 cd dotfiles
+
+# Make i3 dir
+mkdir ~/.config/i3
 
 # Make symlinks
 echo -e "Symlinking Files...\n\n"
@@ -64,7 +67,7 @@ mv git-flow-completion.zsh .git-flow-completion.zsh
 
 # Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+vim -i NONE -c VundleUpdate -c quitall
 
 # Spotify
 # Terminal themedd the Spotify repository signing key to be able to verify downloaded packages
@@ -78,9 +81,6 @@ sudo apt-get update
 
 # 4. Install Spotify
 sudo apt-get install spotify-client
-
-# 4. Install i3
-sudo apt-get install i3 i3blocks
 
 # Goes last since we need to restart afterwards
 git clone https://github.com/chriskempson/base16-gnome-terminal.git ~/.config/base16-gnome-terminal
