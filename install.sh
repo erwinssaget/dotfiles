@@ -78,7 +78,7 @@ php composer-setup.php --quiet
 rm composer-setup.php
 sudo mv composer.phar /usr/local/bin/composer
 
-displayText Installing Composer Plugin Prestissimo (for faster downloads)
+displayText Installing Composer Plugin Prestissimo \(for faster downloads\)
 composer global require "hirak/prestissimo:^0.3"
 
 displayText Installing Laravel Installer globally
