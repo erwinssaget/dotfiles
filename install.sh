@@ -10,7 +10,7 @@ DOT_DIR=~/Code/dotfiles
 
 # Helper Functions
 displayText() {
-    echo -e "${TEXT_COLOR}$* ${NOCOLOR}\n";
+    echo -e "\n${TEXT_COLOR}$* ${NOCOLOR}\n";
 }
 
 promptForProgramInstall() {
@@ -46,7 +46,7 @@ displayText Would you like to install all programs \(${PROGRAMS[*]} \)
 read RESPONSE
 case ${RESPONSE:0:1} in
     y|Y|yes )
-        displayText Installing ${#PROGRAMS[@]} programs
+        displayText Installing all${#PROGRAMS[@]} programs
         sudo apt-get install -y ${PROGRAMS[*]}
     ;;
     * )
@@ -78,8 +78,15 @@ php composer-setup.php --quiet
 rm composer-setup.php
 sudo mv composer.phar /usr/local/bin/composer
 
+displayText Installing Composer Plugin Prestissimo (for faster downloads)
+composer global require "hirak/prestissimo:^0.3"
+
 displayText Installing Laravel Installer globally
 composer global require "laravel/installer"
+
+displayText Installing Laravel Valet Linux
+sudo apt-get install libnss3-tools jq xsel
+composer global require "cpriego/valet-linux"
 
 displayText Making Code directory...
 mkdir ~/Code
@@ -100,14 +107,34 @@ ln -s $DOT_DIR/tmux.conf ~/.tmux.conf
 ln -s $DOT_DIR/zshrc ~/.zshrc
 ln -s $DOT_DIR/gtk.css ~/.config/gtk-3.0/gtk.css
 ln -s $DOT_DIR/i3config ~/.config/i3/config
+ln -s $DOT_DIR/erwins.zsh-theme ~/.oh-my-zsh/custom/themes/erwins.zsh-theme
 
+displayText Configuring zsh...
 cd ~
+
+displayText Git Flow Completion
 wget https://raw.githubusercontent.com/petervanderdoes/git-flow-completion/develop/git-flow-completion.zsh
 mv git-flow-completion.zsh .git-flow-completion.zsh
 
+displayText zsh-nvm plugin
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+
+chsh -s $(which zsh)
+
+displayText Installing Vim Plugins
 # Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim -i NONE -c VundleUpdate -c quitall
+
+displayText configure italics
+cd ~
+wget https://gist.githubusercontent.com/sos4nt/3187620/raw/8e13c1fec5b72d415ed2917590348451de5f8e58/xterm-256color-italic.terminfo
+
+# Compile It
+tic xterm-256color-italic.terminfo
+
+displayText install oh-my-zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 # Spotify
 # Terminal themedd the Spotify repository signing key to be able to verify downloaded packages
@@ -124,5 +151,6 @@ sudo apt-get install spotify-client
 
 # Goes last since we need to restart afterwards
 git clone https://github.com/chriskempson/base16-gnome-terminal.git ~/.config/base16-gnome-terminal
-
 source ~/.config/base16-gnome-terminal/base16-ocean.dark.sh
+
+rm xterm-256color-italic.terminfo
