@@ -46,7 +46,7 @@ displayText Would you like to install all programs \(${PROGRAMS[*]} \)
 read RESPONSE
 case ${RESPONSE:0:1} in
     y|Y|yes )
-        displayText Installing all${#PROGRAMS[@]} programs
+        displayText Installing all ${#PROGRAMS[@]} programs
         sudo apt-get install -y ${PROGRAMS[*]}
     ;;
     * )
