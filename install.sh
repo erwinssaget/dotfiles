@@ -41,11 +41,12 @@ echo -e "Installing programs for development....\n\n"
 sudo apt install -y git vim zsh tmux wget curl
 
 echo -e "Making Code directory...\n\n"
-mkdir ~/Code && cd ~/Code
+mkdir ~/Code
+cd ~/Code
 
 # Clone repo
 echo -e "Cloning dotfiles...\n\n"
-git clone git@github.com:erwinsaget/dotfiles.git
+git clone https://github.com/erwinsaget/dotfiles.git
 cd dotfiles
 
 # Make symlinks
