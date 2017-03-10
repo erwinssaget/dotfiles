@@ -42,7 +42,7 @@ displayText Installing newer versions of installed packages...
 sudo apt-get -y upgrade
 
 # Install some software
-displayText Would you like to install all programs \(${PROGRAMS[*]}\)
+displayText Would you like to install all programs \(${PROGRAMS[*]} \)
 read RESPONSE
 case ${RESPONSE:0:1} in
     y|Y|yes )
