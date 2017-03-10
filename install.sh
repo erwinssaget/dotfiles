@@ -17,7 +17,7 @@ sudo apt-get upgrade
 sudo apt-get install -y php7.0 php7.0-cgi php7.0-cli php7.0-common php7.0-curl php7.0-dev php7.0-gd php7.0-xml php7.0-zip php7.0-mysql php7.0-pdo php7.0-mbstring
 
 # Install Composer
-echo -e "Install Composer....\n\n"
+echo -e "Installing Composer....\n\n"
 EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
