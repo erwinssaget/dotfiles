@@ -123,4 +123,5 @@ map <Leader>vc :VimuxClearRunnerHistory<CR>
 augroup autosourcing
     autocmd!
     autocmd BufWritePost .vimrc source %
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 augroup END
