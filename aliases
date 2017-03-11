@@ -1,8 +1,8 @@
 alias up='cd ..'
-alias home='cd ~'
-alias code='cd ~/Code'
+alias home='cd $HOME'
+alias code='cd $CODE_DIR'
+alias dotfiles='cd $DOT_DIR'
 alias dl="cd ~/Downloads"
-alias dotfiles="cd ~/Code/dotfiles"
 alias gtkcss="vim ~/.config/gtk-3.0/gtk.css"
 alias voithea="cd ~/Code/voithea"
 alias i3config="vim ~/.config/i3/config"
@@ -15,6 +15,9 @@ alias uninstall="sudo apt-get remove $*"
 alias addrepo="sudo add-apt-repository $1"
 alias removerepo="sudo add-apt-repository --remove $1"
 alias autoremove="sudo apt-get autoremove"
+
+alias copy="xclip -sel clip < $1"
+alias newkey="ssh-keygen -t rsa -b 4096 -C $1"
 
 alias ci='composer install'
 alias cu='composer update'

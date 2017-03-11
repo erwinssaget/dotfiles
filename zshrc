@@ -49,4 +49,7 @@ source ~/.aliases
 
 source ~/.git-flow-completion.zsh
 
+export CODE_DIR=~/Code
+export DOT_DIR=~/Code/dotfiles
+export TERMINAL=Konsole
 export TERM=xterm-256color-italic

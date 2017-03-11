@@ -3,7 +3,7 @@
 # Variables
 TEXT_COLOR='\033[0;34m'
 NOCOLOR='\033[0m'
-PROGRAMS=(git vim zsh tmux wget curl i3 i3blocks)
+PROGRAMS=(git vim zsh tmux wget curl i3 i3blocks konsole xclip)
 PROGRAMS_TO_INSTALL=()
 CODE_DIR=~/Code
 DOT_DIR=~/Code/dotfiles
@@ -36,7 +36,7 @@ promptForProgramInstall() {
 
 # ----------- Script Starts Here --------------------
 displayText Updating list of available packages...
-sudo apt-get update 
+sudo apt-get update
 
 displayText Installing newer versions of installed packages...
 sudo apt-get -y upgrade
@@ -104,7 +104,7 @@ displayText Symlinking Files...
 ln -s $DOT_DIR/aliases ~/.aliases
 ln -s $DOT_DIR/vimrc ~/.vimrc
 ln -s $DOT_DIR/tmux.conf ~/.tmux.conf
-ln -s $DOT_DIR/zshrc ~/.zshrc
+#ln -s $DOT_DIR/zshrc ~/.zshrc
 ln -s $DOT_DIR/gtk.css ~/.config/gtk-3.0/gtk.css
 ln -s $DOT_DIR/i3config ~/.config/i3/config
 
@@ -116,7 +116,8 @@ wget https://raw.githubusercontent.com/petervanderdoes/git-flow-completion/devel
 mv git-flow-completion.zsh .git-flow-completion.zsh
 
 displayText Install oh-my-zsh
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+#git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 displayText Zsh-nvm plugin
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
@@ -156,6 +157,11 @@ git clone https://github.com/chriskempson/base16-gnome-terminal.git ~/.config/ba
 source ~/.config/base16-gnome-terminal/base16-ocean.dark.sh
 
 rm xterm-256color-italic.terminfo
+
+# Fonts
+sudo add-apt-repository ppa:no1wantdthisname/ppa
+sudo apt-get update
+sudo apt-get install fontconfig-infiniality
 
 displayText Change shell to zsh
 chsh -s $(which zsh)
