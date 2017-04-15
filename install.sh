@@ -63,20 +63,7 @@ sudo apt-get install -y php7.0 php7.0-cgi php7.0-cli php7.0-common php7.0-curl p
 
 # Install Composer
 displayText Installing Composer...
-EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
-
-if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
-then
-    >&2 echo 'ERROR: Invalid installer signature'
-    rm composer-setup.php
-    exit 1
-fi
-
-php composer-setup.php --quiet
-rm composer-setup.php
-sudo mv composer.phar /usr/local/bin/composer
+sh ./scripts/composer.sh
 
 displayText Installing Composer Plugin Prestissimo \(for faster downloads\)
 composer global require "hirak/prestissimo:^0.3"
@@ -139,29 +126,27 @@ wget https://gist.githubusercontent.com/sos4nt/3187620/raw/8e13c1fec5b72d415ed29
 # Compile It
 tic xterm-256color-italic.terminfo
 
-# Spotify
-# Terminal themedd the Spotify repository signing key to be able to verify downloaded packages
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+#install spotify
 
-# 2. Add the Spotify repository
-echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+read -p "Install Spotify (y/n)? " answer;
+case ${answer:0:1} in
+	y|Y|Yes )
+		bash ./scripts/spotify.sh
+	;;
+	n|N|No )
+		break
+	;;
+	*)
+		echo "Not a valid answer. Please specify y or n."
+	;;
+esac
 
-# 3. Update list of available packages
-sudo apt-get update
-
-# 4. Install Spotify
-sudo apt-get install spotify-client
 
 # Goes last since we need to restart afterwards
 git clone https://github.com/chriskempson/base16-gnome-terminal.git ~/.config/base16-gnome-terminal
 source ~/.config/base16-gnome-terminal/base16-ocean.dark.sh
 
 rm xterm-256color-italic.terminfo
-
-# Fonts
-sudo add-apt-repository ppa:no1wantdthisname/ppa
-sudo apt-get update
-sudo apt-get install fontconfig-infiniality
 
 displayText Change shell to zsh
 chsh -s $(which zsh)
