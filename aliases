@@ -1,27 +1,20 @@
 alias up='cd ..'
 alias home='cd $HOME'
-alias code='cd $CODE_DIR'
-alias dotfiles='cd $DOT_DIR'
+alias study='cd $HOME/Code/studyshare'
+alias voithea='cd $HOME/Code/voithea'
+alias blog='cd $HOME/Code/blog'
+alias project="cd $HOME/Code/project-manager"
+alias bdc='cd $HOME/Code/bdc'
+alias myf='cd $HOME/Code/myf'
 alias dl="cd ~/Downloads"
-alias gtkcss="vim ~/.config/gtk-3.0/gtk.css"
-alias voithea="cd ~/Code/voithea"
-alias i3config="vim ~/.config/i3/config"
-
-alias update="sudo apt-get update"
-alias upgrade="sudo apt-get upgrade"
-alias updates="apt list --upgradeable"
-alias install="sudo apt install $*"
-alias uninstall="sudo apt-get remove $*"
-alias addrepo="sudo add-apt-repository $1"
-alias removerepo="sudo add-apt-repository --remove $1"
-alias autoremove="sudo apt-get autoremove"
-
-alias copy="xclip -sel clip < $1"
-alias newkey="ssh-keygen -t rsa -b 4096 -C $1"
+alias db="cd ~/Dropbox"
+alias bc="cd ~/Bootcamp/GTATL201901FSF2-FT && git pull"
+alias hw="cd ~/Code/homework"
 
 alias ci='composer install'
 alias cu='composer update'
 alias cda='composer dumpautoload'
+alias cr='composer require $1'
 
 alias art='php artisan'
 alias pam="php artisan migrate:refresh --seed"
@@ -31,14 +24,23 @@ alias routes='php artisan route:list'
 alias vimrc='vim ~/.vimrc'
 alias zshconfig='vim ~/.zshrc'
 alias reload="source ~/.zshrc"
-alias aliases='vim ~/.aliases'
 alias tconf="vim ~/.tmux.conf"
+alias v="vim"
 
-alias tags="ctags -R --exclude=node_modules --exclude=public --exclude=resources --languages=-javascript"
+alias tags="ctags -R --exclude='node_modules' --exclude='public' --exclude='resources' --exclude='*.js'"
 alias dre='docker rm $(docker ps -q -f status=exited)'
 
 alias gffs="git flow feature start"
 alias gfff="git flow feature finish"
+alias gcho="git checkout"
+alias pu="vendor/bin/phpunit"
+alias pf="vendor/bin/phpunit --filter $*"
+alias nah="git reset --hard && git clean -df"
+alias wip="git add . && git commit -m 'WIP'"
+
+# Pipe anything into `clip` to forward it to Clipper
+alias clip="nc localhost 8377"
+
 #wrapper around git add & commit
 gcaa() { git add --all && git commit -m "$*" }
 
