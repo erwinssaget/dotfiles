@@ -1,33 +1,18 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendhistory autocd extendedglob nomatch notify
-unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
-
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/erwins/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
 # If you come from bash you might have to change your $PATH.
-export PATH=node_modules/.bin:$HOME/bin:/usr/local/bin:~/.config/composer/vendor/bin:~/.config/spark-installer:$PATH
+# vendor/bin:node_modules/bin:$HOME/.config/spark-installer:
+export PATH="$HOME/.pyenv/shims:/usr/local/bin:$HOME/bin:$HOME/.composer/vendor/bin:`yarn global bin`:$HOME/Code/spark-installer:$PATH"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/erwins/.oh-my-zsh
+export ZSH=/Users/erwinssaget/.oh-my-zsh
+
+#autoload -U promptinit; promptinit
 
 # Set name of the theme to load.
-ZSH_THEME="erwins"
+ZSH_THEME="refined"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
-
-DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -37,19 +22,49 @@ ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOQUIT=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(zsh-nvm git sublime tmux)
+plugins=(git git-flow-avh tmux sublime)
 
 source $ZSH/oh-my-zsh.sh
+
+# User configuration
 
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
-# Set personal aliases
+# ssh
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
 source ~/.aliases
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-source ~/.git-flow-completion.zsh
+# part of java install
+export JAVA_HOME=$(/usr/libexec/java_home)
 
-export CODE_DIR=~/Code
-export DOT_DIR=~/Code/dotfiles
-export TERMINAL=Konsole
-export TERM=xterm-256color-italic
+# part of android sdk install
+export ANDROID_HOME=/usr/local/share/android-sdk
+export HOMEBREW_GITHUB_API_TOKEN="d17b6b14fd6f6825ec26ff5fac7e3d1d129e0974"
+
+# for zsh autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# ctrl + space to accept autosuggestions
+bindkey '^ ' autosuggest-execute
+
+# must be at the bottom of .zshrc
+source /Users/erwinssaget/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+###-tns-completion-start-###
+if [ -f /Users/erwinssaget/.tnsrc ]; then 
+    source /Users/erwinssaget/.tnsrc 
+fi
+###-tns-completion-end-###
+#
+export PATH="/usr/local/opt/node@10/bin:$PATH"
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/erwinssaget/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
