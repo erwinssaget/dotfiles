@@ -1,1 +1,1 @@
-[[./vim.png]]
+![Screenshot](vim.png)
