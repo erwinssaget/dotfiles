@@ -6,6 +6,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'                 " Vundle manages Vundle, required
 Plugin 'tpope/vim-vinegar'                    " File Navigation
 Plugin 'tpope/vim-fugitive'                   " Git Integration
+Plugin 'tpope/vim-rhubarb'                    " Allows Gbrowse to open up files on Github
 Plugin 'posva/vim-vue'                        " Plugin for vue files
 Plugin 'Raimondi/delimitMate'                 " Autoclose parentheses, etc
 Plugin 'godlygeek/tabular'                    " Alignment
@@ -30,25 +31,16 @@ Plugin 'ctrlpvim/ctrlp.vim'                   " Fuzzy File Finder
 Plugin 'shawncplus/phpcomplete.vim'           " Better php completion
 Plugin 'morhetz/gruvbox'                      " Colorscheme
 Plugin 'skywind3000/asyncrun.vim'             " Allows running of async commands
-Plugin 'vim-airline/vim-airline'              " Airline Support
+Plugin 'itchyny/lightline.vim'                " Statusline plugin
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
 let mapleader=','                             " Change <Leader> to comma
 syntax enable                                 " Enable syntax highlighting
-set number
-set background=dark
-let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors     " enable true colors support
-let g:gruvbox_sign_column="bg0"
-let g:gruvbox_contrast_dark="soft"
-let g:gruvbox_italicize_strings=1
-let g:gruvbox_italic=1
-let g:gruvbox_invert_selection=0
-set colorcolumn=80
-set number
-set relativenumber
+set background=dark                           " Dark background?
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"          " Literally only here for italics
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"          " Literally only here for italics
+set termguicolors                             " enable true colors support
 set backspace=indent,eol,start                " Common backspace behavior
 set hidden                                    " Allow hiding buffers w/ changes
 set splitbelow                                " Sets split below
@@ -59,31 +51,105 @@ set noexpandtab
 set softtabstop=4
 set autoread                                  " Automatically read changes
 set tags=./tags;
-set laststatus=2
+set laststatus=2                              " Always show the statusbar bc of lightline"
 set grepprg=rg\ --vimgrep
-set signcolumn=yes
+set signcolumn=yes                            " Show the sign column (for git gutter and errors)
+set nonumber                                  " I like a clean editor
+
+" ------ Uncomment to see stuff ---------
+"set colorcolumn=80
+"set number
+"set relativenumber
+
+
+" ----- Colorscheme stuff ------
+let g:gruvbox_sign_column="bg0"
+let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_italicize_strings=1
+let g:gruvbox_italic=1
+let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 
-let g:airline_theme='gruvbox'
+" I hate seeing the tilda signs in vim
+highlight EndOfBuffer guifg=bg
 
-let g:gitgutter_map_keys = 0
+" Gitgutter
+" Don't map any keys to anything
+let g:gitgutter_map_keys=0
+let g:gitgutter_sign_added='●'
+let g:gitgutter_sign_added='●'
+let g:gitgutter_sign_modified='●'
+let g:gitgutter_sign_removed='●'
+let g:gitgutter_sign_modified_removed='●'
 
-let g:ale_linters_explicit = 1
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
+" Ale linter
+let g:ale_lint_on_enter=1 " Less distracting when opening a new file
+let g:ale_sign_error='✗'
+let g:ale_sign_warning='▲'
+let g:ale_linters_explicit=1 " Only lint files that I explicitly specify
+let g:ale_linters = {
+\   'php': ['php'],
+\   'javascript': ['eslint']
 \}
 
+" Toggle whether to show characters or not
 nmap <leader>l :set list!<CR>
-set listchars=tab:▸\ ,trail:•
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:· " Unicode characters for various things"
 
 set hlsearch                                  " Highlight my searches
 set incsearch                                 " Search incrementally
 set smartcase                                 " Smart case search for uppercase
 set ignorecase                                " Case insensitive search
+
+" ------- Lightline config ------------
+let g:lightline = {
+\ 'colorscheme': 'gruvbox',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
+
+function! LightlineLinterWarnings() abort
+	let l:counts = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:counts.error + l:counts.style_error
+	let l:all_non_errors = l:counts.total - l:all_errors
+	return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+	let l:counts = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:counts.error + l:counts.style_error
+	let l:all_non_errors = l:counts.total - l:all_errors
+	return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+	let l:counts = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:counts.error + l:counts.style_error
+	let l:all_non_errors = l:counts.total - l:all_errors
+	return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()
+
+" Update and show lightline but only if it's visible
+" (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+	if exists('#lightline')
+		call lightline#update()
+	end
+endfunction
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.git/*,*/node_modules/*,.DS_Store
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
@@ -106,6 +172,16 @@ set pastetoggle=<F10>
 " Add semicolon to end of line
 inoremap <Leader>; <C-o>A;
 
+" Make j & k linewise
+
+" turn off linewise keys -- normally, the `j' and `k' keys move the cursor down
+" one entire line. with line wrapping on, this can cause the cursor to actually
+" skip a few lines on the screen because it's moving from line N to line N+1 in
+" the file. I want this to act more visually -- I want `down' to mean the next
+" line on the screen
+map j gj
+map k gk
+
 " Avoid escape key
 inoremap jj <Esc>
 
@@ -126,7 +202,8 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-" Prevent vim from slowing down
+
+" Prevent vim from slowing down Vim-vue
 let g:vue_disable_pre_processors=1
 
 " Tabularize
