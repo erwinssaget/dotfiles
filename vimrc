@@ -29,68 +29,66 @@ Plugin 'airblade/vim-gitgutter'               " Show git changes in gutter
 Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles
 Plugin 'ctrlpvim/ctrlp.vim'                   " Fuzzy File Finder
 Plugin 'shawncplus/phpcomplete.vim'           " Better php completion
-Plugin 'morhetz/gruvbox'                      " Colorscheme
 Plugin 'skywind3000/asyncrun.vim'             " Allows running of async commands
 Plugin 'itchyny/lightline.vim'                " Statusline plugin
+Plugin 'junegunn/seoul256.vim'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
 let mapleader=','                             " Change <Leader> to comma
 syntax enable                                 " Enable syntax highlighting
 set background=dark                           " Dark background?
-let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"          " Literally only here for italics
-let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"          " Literally only here for italics
-set termguicolors                             " enable true colors support
+set termguicolors
+set t_Co=256
 set backspace=indent,eol,start                " Common backspace behavior
 set hidden                                    " Allow hiding buffers w/ changes
 set splitbelow                                " Sets split below
 set splitright                                " Sets split to the right
 set list
-set ts=4 sw=4
-set noexpandtab
-set softtabstop=4
+set tabstop=2 shiftwidth=2 expandtab
+set softtabstop=2
 set autoread                                  " Automatically read changes
 set tags=./tags;
 set laststatus=2                              " Always show the statusbar bc of lightline"
 set grepprg=rg\ --vimgrep
 set signcolumn=yes                            " Show the sign column (for git gutter and errors)
 set nonumber                                  " I like a clean editor
-
-" ------ Uncomment to see stuff ---------
-"set colorcolumn=80
+set updatetime=100
 "set number
 "set relativenumber
+set mouse=a
 
-
-" ----- Colorscheme stuff ------
-let g:gruvbox_sign_column="bg0"
-let g:gruvbox_contrast_dark="soft"
-let g:gruvbox_italicize_strings=1
-let g:gruvbox_italic=1
-let g:gruvbox_invert_selection=0
-colorscheme gruvbox
+"set colorcolumn=80
+let g:seoul256_background=234
+colorscheme seoul256
 
 " I hate seeing the tilda signs in vim
-highlight EndOfBuffer guifg=bg
+highlight EndOfBuffer ctermfg=234 ctermbg=234
 
 " Gitgutter
 " Don't map any keys to anything
 let g:gitgutter_map_keys=0
-let g:gitgutter_sign_added='●'
-let g:gitgutter_sign_added='●'
-let g:gitgutter_sign_modified='●'
-let g:gitgutter_sign_removed='●'
-let g:gitgutter_sign_modified_removed='●'
+let g:gitgutter_sign_added='⇥'
+let g:gitgutter_sign_modified='⇥'
+let g:gitgutter_sign_removed='⇤'
+let g:gitgutter_sign_modified_removed='⇤'
+let g:gitgutter_override_sign_column_highlight=0
+highlight SignColumn ctermfg=234 ctermbg=234
 
 " Ale linter
 let g:ale_lint_on_enter=1 " Less distracting when opening a new file
 let g:ale_sign_error='✗'
 let g:ale_sign_warning='▲'
 let g:ale_linters_explicit=1 " Only lint files that I explicitly specify
+let g:ale_fix_on_save = 1
 let g:ale_linters = {
 \   'php': ['php'],
-\   'javascript': ['eslint']
+\   'javascript': ['prettier']
 \}
+let g:ale_fixers = {
+\   'javascript': ['prettier']
+\}
+
 
 " Toggle whether to show characters or not
 nmap <leader>l :set list!<CR>
@@ -103,7 +101,7 @@ set ignorecase                                " Case insensitive search
 
 " ------- Lightline config ------------
 let g:lightline = {
-\ 'colorscheme': 'gruvbox',
+\ 'colorscheme': 'seoul256',
 \ 'active': {
 \   'left': [['mode', 'paste'], ['filename', 'modified']],
 \   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
