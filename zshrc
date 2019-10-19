@@ -1,9 +1,14 @@
-source ./git-prompt.sh
+source ~/Code/dotfiles/git-prompt.sh
 
-# use more powerful autocomplete
+# Autocomplete
 autoload -Uz compinit && compinit
 
+# Prompt
+GIT_PS1_SHOWDIRTYSTATE=true
+FIRSTLINE="%~$(__git_ps1)"
 NEWLINE=$'\n'
-PROMPT="%~ ${NEWLINE}$ "
+PROMPT="${FIRSTLINE}${NEWLINE}$ "
+
+# Aliases
 alias gst="git status"
 alias codedir="cd ~/Code"
