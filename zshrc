@@ -1,15 +1,17 @@
 # Start tmux
-if [ "$TMUX" = "" ]; then tmux a; fi
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
 
+# Git flow completion
+source ~/.git-flow-completion.zsh
+
 # Autocomplete
 autoload -Uz compinit && compinit
-
-# TERM
-export TERM=xterm-256color
 
 # This is for the prompt
 source ~/Code/dotfiles/git-prompt.sh
@@ -22,6 +24,14 @@ precmd () { __git_ps1 "%~%s" "${NEWLINE}$ " }
 # Aliases
 alias gst="git status"
 alias codedir="cd ~/Code"
+alias dcu="docker-compose up"
+alias dcd="docker-compose down"
+alias projects="cd ~/Projects"
+alias gcm="git checkout master"
+alias gcd="git checkout develop"
+alias gco="git checkout"
+alias bearshare="cd ~/Projects/bearshare"
+alias ngrok="~/ngrok"
 
 # Functions
 # this can also be achieved by the same command
@@ -33,28 +43,8 @@ function docker-clean() {
   docker network prune;
 }
 
-function docker-mysql() {
-  docker run --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -p 3306:3306 -d mysql
-}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f'
 
-function start() {
-  case "$1" in
-    mysql)
-      docker start mysql
-      ;;
-    *)
-      echo "Usage: $0 {mysql}"
-      ;;
-  esac
-}
-
-function stop() {
-  case "$1" in
-    mysql)
-      docker stop mysql
-      ;;
-    *)
-      echo "Usage: $0 {mysql}"
-      ;;
-  esac
-}
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/erwinssaget/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
