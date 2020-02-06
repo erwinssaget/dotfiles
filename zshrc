@@ -1,7 +1,7 @@
-# Start tmux
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/erwinssaget/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -10,16 +10,24 @@ export NVM_DIR="$HOME/.nvm"
 # Git flow completion
 source ~/.git-flow-completion.zsh
 
-# Autocomplete
-autoload -Uz compinit && compinit
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+ HYPHEN_INSENSITIVE="true"
 
-# This is for the prompt
-source ~/Code/dotfiles/git-prompt.sh
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
 
-# Prompt
-GIT_PS1_SHOWCOLORHINTS=true
-NEWLINE=$'\n'
-precmd () { __git_ps1 "%~%s" "${NEWLINE}$ " }
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+ZSH_TMUX_AUTOSTART=true
+
+plugins=(git docker tmux)
+
+source $ZSH/oh-my-zsh.sh
+
+# Preferred editor for local and remote sessions
+export EDITOR='vim'
 
 # Aliases
 alias gst="git status"
@@ -30,21 +38,10 @@ alias projects="cd ~/Projects"
 alias gcm="git checkout master"
 alias gcd="git checkout develop"
 alias gco="git checkout"
-alias bearshare="cd ~/Projects/bearshare"
-alias ngrok="~/ngrok"
-
-# Functions
-# this can also be achieved by the same command
-# docker system prune --volumes
-function docker-clean() {
-  docker image prune -a --force;
-  docker container prune --force;
-  docker volume prune --force;
-  docker network prune;
-}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='fd --type f'
 
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/erwinssaget/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+fpath+=($ZSH/plugins/docker)
+autoload -Uz compinit; compinit
+
+export FZF_DEFAULT_COMMAND='fd --type f'
