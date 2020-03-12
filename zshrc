@@ -22,7 +22,7 @@ COMPLETION_WAITING_DOTS="true"
 
 ZSH_TMUX_AUTOSTART=true
 
-plugins=(git docker tmux)
+plugins=(git docker docker-machine tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -34,7 +34,6 @@ alias gst="git status"
 alias codedir="cd ~/Code"
 alias dcu="docker-compose up"
 alias dcd="docker-compose down"
-alias projects="cd ~/Projects"
 alias gcm="git checkout master"
 alias gcd="git checkout develop"
 alias gco="git checkout"
