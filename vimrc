@@ -21,13 +21,12 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'morhetz/gruvbox'
+Plugin 'sainnhe/gruvbox-material'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
 let mapleader=','                             " Change <Leader> to comma
 syntax enable                                 " Enable syntax highlighting
-set background=dark
 set tabstop=2 shiftwidth=2 expandtab
 set backspace=indent,eol,start                " Common backspace behavior
 set softtabstop=2
@@ -46,9 +45,18 @@ set mouse=a
 set signcolumn=yes
 set t_Co=256
 set termguicolors
+set background=dark
 if exists('+termguicolors')
+  set t_ZH=[3m
+  set t_ZR=[23m
   set termguicolors
 endif
+
+colorscheme gruvbox-material
+highlight Comment cterm=italic
+
+let g:gruvbox_material_enable_italic = 1
+let g:lightline = {'colorscheme' : 'gruvbox_material'}
 
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
@@ -69,15 +77,6 @@ let g:ale_fixers = {
 highlight clear SignColumn
 " Vim Javascript
 let g:javascript_plugin_jsdoc = 1
-
-let g:gruvbox_sign_column="bg0"
-"let g:gruvbox_contrast_dark="hard"
-let g:gruvbox_invert_selection=0
-colorscheme gruvbox
-
-let g:lightline = {
-\ 'colorscheme': 'seoul256',
-\ }
 
 " Vimux
 let g:VimuxOrientation = "h"

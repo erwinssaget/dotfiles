@@ -20,9 +20,7 @@ source ~/.git-flow-completion.zsh
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-ZSH_TMUX_AUTOSTART=true
-
-plugins=(git docker docker-machine tmux)
+plugins=(git docker docker-machine)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -37,6 +35,8 @@ alias dcd="docker-compose down"
 alias gcm="git checkout master"
 alias gcd="git checkout develop"
 alias gco="git checkout"
+alias dl="cd ~/Downloads"
+alias reload="source ~/.zshrc"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
