@@ -7,10 +7,10 @@ set rtp+=~/.vim/bundle/Vundle.vim             " Include Vundle in runtime path
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'                 " Vundle manages Vundle, required
-Plugin 'christoomey/vim-tmux-navigator'       " For tmux
-Plugin 'benmills/vimux'                       " Tmux commands
 Plugin 'scrooloose/nerdtree'                  " File Drawer
 Plugin 'scrooloose/nerdcommenter'             " Comments
+Plugin 'christoomey/vim-tmux-navigator'       " For tmux
+Plugin 'benmills/vimux'                       " Tmux commands
 Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles
 Plugin 'dense-analysis/ale'                   " Linter
 Plugin 'pangloss/vim-javascript'              " Javascript Support
@@ -21,7 +21,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'sainnhe/gruvbox-material'
+Plugin 'mhartington/oceanic-next'
+Plugin 'tomasiser/vim-code-dark'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
@@ -38,30 +39,25 @@ set number
 set autoread
 set scl=yes
 set hidden
-set cursorline
 set noshowmode
 set laststatus=2
 set mouse=a
 set signcolumn=yes
-set t_Co=256
-set termguicolors
 set background=dark
-if exists('+termguicolors')
-  set t_ZH=[3m
-  set t_ZR=[23m
-  set termguicolors
-endif
+set cursorline
 
-colorscheme gruvbox-material
-highlight Comment cterm=italic
-
-let g:gruvbox_material_enable_italic = 1
-let g:lightline = {'colorscheme' : 'gruvbox_material'}
+colorscheme codedark
 
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
 
 let g:gitgutter_map_keys=0
+
+let g:lightline = {}
+let g:lightline.colorscheme = 'codedark'
+
+" Enable folding with the spacebar
+nnoremap <space> za
 
 " Ale
 let g:ale_lint_on_text_changed = 'always'
@@ -72,15 +68,12 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
 \ }
 
 highlight clear SignColumn
 " Vim Javascript
 let g:javascript_plugin_jsdoc = 1
-
-" Vimux
-let g:VimuxOrientation = "h"
-let g:VimuxHeight = "40"
 
 " ======= Persistent Undo =============
 silent !mkdir ~/.vim/backups > /dev/null 2>&1
@@ -109,14 +102,8 @@ nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
 nmap <C-p> :FZF<cr>
 
-" Prompt for a command to run
-map <Leader>vp :VimuxPromptCommand<CR>
-
-" Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
-
-" Close vim tmux runner opened by VimuxRunCommand
-map <Leader>vq :VimuxCloseRunner<CR>
+" To folds using space bar
+nnoremap <space> za
 
 " Nerdtree
 nmap <C-b> :NERDTreeToggle<cr>
