@@ -21,8 +21,9 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'mhartington/oceanic-next'
-Plugin 'tomasiser/vim-code-dark'
+Plugin 'morhetz/gruvbox'
+Plugin 'rust-lang/rust.vim'
+Plugin 'sainnhe/gruvbox-material'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
@@ -44,9 +45,18 @@ set laststatus=2
 set mouse=a
 set signcolumn=yes
 set background=dark
+set t_Co=256
 set cursorline
+if (has("termguicolors"))
+  set termguicolors
+endif
 
-colorscheme codedark
+let g:gruvbox_sign_column="bg0"
+"let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_invert_selection=0
+let g:gruvbox_material_disable_italic_comment=1
+"colorscheme gruvbox
+colorscheme gruvbox-material
 
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
@@ -54,24 +64,33 @@ let g:snipMate.snippet_version = 1
 let g:gitgutter_map_keys=0
 
 let g:lightline = {}
-let g:lightline.colorscheme = 'codedark'
+let g:lightline.colorscheme = 'gruvbox_material'
 
 " Enable folding with the spacebar
 nnoremap <space> za
 
 " Ale
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_delay = 1000
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_delay = 1000
+
+let g:ale_rust_rls_executable = '/Users/erwinssaget/.cargo/bin/rls'
+let g:ale_rust_rls_toolchain = 'stable'
+
 let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\   'rust': ['rls'],
+\ }
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
+\   'rust': ['rustfmt'],
 \ }
 
 highlight clear SignColumn
+
 " Vim Javascript
 let g:javascript_plugin_jsdoc = 1
 
@@ -104,6 +123,19 @@ nmap <C-p> :FZF<cr>
 
 " To folds using space bar
 nnoremap <space> za
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+
+" Vimux
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "40"
 
 " Nerdtree
 nmap <C-b> :NERDTreeToggle<cr>

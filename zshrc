@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/erwinssaget/.oh-my-zsh"
 
-ZSH_THEME="materialshell"
+ZSH_THEME="arrow"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -52,6 +52,8 @@ fpath+=($ZSH/plugins/docker)
 autoload -Uz compinit; compinit
 
 export FZF_DEFAULT_COMMAND='fd --type f'
+
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
