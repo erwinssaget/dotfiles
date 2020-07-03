@@ -17,10 +17,15 @@ source ~/.git-flow-completion.zsh
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
 
+# Use vim keybindings =)
+bindkey -v
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git docker docker-machine)
+plugins=(git docker docker-machine vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -44,6 +49,8 @@ alias dl="cd ~/Downloads"
 alias reload="source ~/.zshrc"
 alias knex="node_modules/.bin/knex"
 alias docs="cd ~/Documents"
+alias zshrc="vim ~/.zshrc"
+alias ws="cd ~/Code"
 export CODE="/Users/erwinssaget/Code"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
