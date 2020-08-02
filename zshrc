@@ -50,8 +50,9 @@ alias reload="source ~/.zshrc"
 alias knex="node_modules/.bin/knex"
 alias docs="cd ~/Documents"
 alias zshrc="vim ~/.zshrc"
-alias ws="cd ~/Code"
 export CODE="/Users/erwinssaget/Code"
+alias ws="cd $CODE"
+alias nr="npm run"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
