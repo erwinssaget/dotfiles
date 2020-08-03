@@ -57,16 +57,20 @@ let g:gruvbox_invert_selection=0
 let g:gruvbox_material_disable_italic_comment=1
 colorscheme gruvbox-material
 
-let g:snipMate = {}
-let g:snipMate.snippet_version = 1
+" Snippets
+map <Leader>es :tabedit ~/.vim/snippets/
+let g:snipMate = get(g:, 'snipMate', {}) " Allow for vimrc re-sourcing
+let g:snipMate.scope_aliases = {}
+let g:snipMate.snippet_version=1
 
+" Git gutter
+" Don't map keys to anything
 let g:gitgutter_map_keys=0
+" Make background colours match the sign column
+let g:gitgutter_set_sign_backgrounds = 1
 
 let g:lightline = {}
 let g:lightline.colorscheme = 'gruvbox_material'
-
-" Enable folding with the spacebar
-nnoremap <space> za
 
 " Ale
 highlight clear ALEErrorSign
@@ -120,7 +124,7 @@ nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
 nmap <C-p> :FZF<cr>
 
-" To folds using space bar
+" To unfold using space bar
 nnoremap <space> za
 
 " Prompt for a command to run
