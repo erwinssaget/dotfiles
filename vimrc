@@ -51,11 +51,12 @@ set cursorline
 if (has("termguicolors"))
   set termguicolors
 endif
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
 
 let g:gruvbox_sign_column="bg0"
-"let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_invert_selection=0
-let g:gruvbox_material_disable_italic_comment=1
 colorscheme gruvbox-material
 
 " Snippets
