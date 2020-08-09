@@ -24,6 +24,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'morhetz/gruvbox'
 Plugin 'rust-lang/rust.vim'
 Plugin 'sainnhe/gruvbox-material'
+Plugin 'jidn/vim-dbml'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
