@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/erwinssaget/.oh-my-zsh"
 
-ZSH_THEME="arrow"
+ZSH_THEME="minimal"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
