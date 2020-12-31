@@ -21,10 +21,14 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'morhetz/gruvbox'
+Plugin 'sainnhe/edge'
 Plugin 'rust-lang/rust.vim'
-Plugin 'sainnhe/gruvbox-material'
 Plugin 'jidn/vim-dbml'
+Plugin 'tpope/vim-obsession'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'mhartington/oceanic-next'
+Plugin 'sainnhe/gruvbox-material'
+Plugin 'sainnhe/sonokai'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
@@ -41,6 +45,7 @@ set number
 set autoread
 set scl=yes
 set hidden
+set splitbelow                                " Make splits appear below window
 set noshowmode
 set laststatus=2
 set mouse=a
@@ -54,9 +59,8 @@ endif
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
-let g:gruvbox_sign_column="bg0"
-let g:gruvbox_contrast_dark="soft"
-let g:gruvbox_invert_selection=0
+let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_enable_italic = 1
 colorscheme gruvbox-material
 
 " Snippets

@@ -1,18 +1,15 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/erwinssaget/.oh-my-zsh"
 
-ZSH_THEME="minimal"
+ZSH_THEME="theunraveler"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
-
-# Git flow completion
-source ~/.git-flow-completion.zsh
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
- HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -25,7 +22,7 @@ export KEYTIMEOUT=1
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git docker docker-machine vi-mode)
+plugins=(git docker docker-machine vi-mode fzf nvm pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -36,9 +33,10 @@ export EDITOR='vim'
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 
+export CODE="~/workspace"
+
 # Aliases
 alias gst="git status"
-alias codedir="cd ~/Code"
 alias dc="docker-compose"
 alias dcu="dc up"
 alias dcd="dc down"
@@ -50,7 +48,6 @@ alias reload="source ~/.zshrc"
 alias knex="node_modules/.bin/knex"
 alias docs="cd ~/Documents"
 alias zshrc="vim ~/.zshrc"
-export CODE="/Users/erwinssaget/Code"
 alias ws="cd $CODE"
 alias nr="npm run"
 
@@ -58,10 +55,6 @@ alias nr="npm run"
 
 fpath+=($ZSH/plugins/docker)
 autoload -Uz compinit; compinit
-
-export FZF_DEFAULT_COMMAND='fd --type f'
-
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -77,3 +70,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
