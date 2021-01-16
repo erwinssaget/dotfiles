@@ -2,7 +2,7 @@ set nocompatible                              " Required
 filetype off                                  " Required
 
 " use fzf in vim
-set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/bin/fzf
 set rtp+=~/.vim/bundle/Vundle.vim             " Include Vundle in runtime path
 
 call vundle#begin()
@@ -15,6 +15,7 @@ Plugin 'editorconfig/editorconfig-vim'        " Maintain consistent styles
 Plugin 'dense-analysis/ale'                   " Linter
 Plugin 'pangloss/vim-javascript'              " Javascript Support
 Plugin 'itchyny/lightline.vim'
+Plugin 'junegunn/fzf'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
