@@ -51,6 +51,7 @@ set noshowmode
 set laststatus=2
 set mouse=a
 set signcolumn=yes
+set shiftround
 set background=dark
 set t_Co=256
 set cursorline
