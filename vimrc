@@ -30,6 +30,7 @@ Plugin 'arcticicestudio/nord-vim'
 Plugin 'mhartington/oceanic-next'
 Plugin 'sainnhe/gruvbox-material'
 Plugin 'sainnhe/sonokai'
+Plugin 'neoclide/coc.nvim'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
@@ -79,6 +80,9 @@ let g:gitgutter_set_sign_backgrounds = 1
 
 let g:lightline = {}
 let g:lightline.colorscheme = 'gruvbox_material'
+
+"Coc extenstions
+let g:coc_global_extenstions = ['coc-tsserver']
 
 " Ale
 highlight clear ALEErrorSign
@@ -154,6 +158,12 @@ nmap <C-b> :NERDTreeToggle<cr>
 let NERDTreeQuitOnOpen = 1
 " Dont prompt to delete buffer on delete
 let NERDTreeAutoDeleteBuffer = 1
+
+" For coc.vim completions
+" You have to remap <cr> to make it confirms completion.
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" To make <cr> select the first completion item and confirm the completion when no item has been selected:
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 " ---Auto-Commands---"
 augroup autosourcing
