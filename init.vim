@@ -20,6 +20,9 @@ Plug 'sainnhe/gruvbox-material'
 " Status bar
 Plug 'itchyny/lightline.vim'
 
+" For tmux integration
+Plug 'christoomey/vim-tmux-navigator'
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -30,18 +33,16 @@ set number
 if has('termguicolors')
   set termguicolors
 endif
+
+let g:gruvbox_material_background = 'soft'
 let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_foreground = 'material'
-let g:gruvbox_material_background = 'hard'
-" For better performance
-let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
 
 let g:lightline = {}
 let g:lightline.colorscheme = 'gruvbox_material'
 
 " Change <Leader> to comma
-let mapleader=','                             
+let mapleader=','
 "Not feeling the shift key
 noremap ; :
 
