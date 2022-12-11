@@ -35,12 +35,9 @@ alias gcd="git checkout develop"
 alias gco="git checkout"
 alias dl="cd ~/Downloads"
 alias reload="source ~/.zshrc"
-alias knex="node_modules/.bin/knex"
 alias docs="cd ~/Documents"
 alias zshrc="vim ~/.zshrc"
 alias ws="cd $CODE"
-alias nr="npm run"
-alias python2="$(pyenv which python)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
