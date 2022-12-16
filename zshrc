@@ -36,7 +36,7 @@ alias gco="git checkout"
 alias dl="cd ~/Downloads"
 alias reload="source ~/.zshrc"
 alias docs="cd ~/Documents"
-alias zshrc="vim ~/.zshrc"
+alias vim="nvim"
 alias ws="cd $CODE"
 
 export NVM_DIR="$HOME/.nvm"
