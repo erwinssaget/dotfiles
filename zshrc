@@ -1,9 +1,7 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/erwinssaget/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
-export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$(pyenv root)/shims:$PATH
-
-ZSH_THEME="apple"
+ZSH_THEME="af-magic"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -23,8 +21,6 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
-export CODE="~/workspace"
-
 # Aliases
 alias gst="git status"
 alias dc="docker-compose"
@@ -37,7 +33,7 @@ alias dl="cd ~/Downloads"
 alias reload="source ~/.zshrc"
 alias docs="cd ~/Documents"
 alias vim="nvim"
-alias ws="cd $CODE"
+alias ws="cd ~/Code"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
