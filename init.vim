@@ -1,35 +1,29 @@
 call plug#begin()
-Plug 'preservim/nerdtree'                     " File Drawer
-Plug 'preservim/nerdcommenter'                " Commenting Plugin
-" You should probably also install bat and delta
-" - https://github.com/sharkdp/bat
-" - https://github.com/dandavison/delta
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'preservim/nerdtree'                           " File Drawer
+Plug 'preservim/nerdcommenter'                      " Commenting Plugin
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " You should probably also install bat and delta, fd, & tree
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Make vim more like an IDE
-Plug 'sainnhe/gruvbox-material'                 " Colorscheme
-Plug 'itchyny/lightline.vim'                    " Status bar
-Plug 'christoomey/vim-tmux-navigator'           " For tmux integration
+Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Make vim more like an IDE
+Plug 'sainnhe/gruvbox-material'                     " Colorscheme
+Plug 'itchyny/lightline.vim'                        " Status bar
+Plug 'christoomey/vim-tmux-navigator'               " For tmux integration
 Plug 'editorconfig/editorconfig'
-Plug 'pangloss/vim-javascript'                  " Javascript support
-Plug 'dense-analysis/ale'                       " Linter
-
-" Initialize plugin system
-" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+Plug 'pangloss/vim-javascript'                      " Javascript support
+Plug 'dense-analysis/ale'                           " Linter
 call plug#end()
 
-set hlsearch                                  " Highlight my searches
-set incsearch                                 " Search incrementally
-set smartcase                                 " Smart case search for uppercase
-set ignorecase                                " Case insensitive search
-set number                                    " Show number lines
+set hlsearch                                        " Highlight my searches
+set incsearch                                       " Search incrementally
+set smartcase                                       " Smart case search for uppercase
+set ignorecase                                      " Case insensitive search
+set number                                          " Show number lines
 set tabstop=2 shiftwidth=2 expandtab
 set softtabstop=2
 " number of spaces to use to shift
 set shiftwidth=2
 " Use multiple of shiftwidth when indenting
 set shiftround
-set splitbelow                                " Make splits appear below window
+set splitbelow                                      " Make splits appear below window
 
  " Important!! Colors are nice!
 if has('termguicolors')
@@ -73,6 +67,13 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \ }
+" CoC extensions
+let g:coc_global_extensions = ['coc-tsserver']
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Nerdtree
 nmap <C-b> :NERDTreeToggle<cr>
@@ -83,3 +84,4 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 
 nmap <C-p> :GFiles<cr>
+nmap <C-r> :Rg<cr>
