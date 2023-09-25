@@ -1,7 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="af-magic"
+ZSH_THEME="gozilla"
+
+path=('$HOME/.composer/vendor/bin' $path)
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -34,6 +36,9 @@ alias reload="source ~/.zshrc"
 alias docs="cd ~/Documents"
 alias vim="nvim"
 alias ws="cd ~/Code"
+alias ci="composer install"
+alias art="php artisan"
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

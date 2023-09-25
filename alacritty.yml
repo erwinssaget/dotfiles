@@ -112,18 +112,19 @@
 # Font configuration
 font:
   normal:
-    family: Noto Mono
+    family: Monaco
     style: Regular
   bold:
-    family: Noto Mono
+    family: Moncaco
     style: Regular
   italic:
-    family: Noto Mono
-    style: Regular
-  size: 12
+    family: Monaco
+    style: Italic
+  size: 13
   offset:
     x: 0
-    y: 5
+    y: 0
+  AppleFontSmoothing: true
 #font:
   # Normal (roman) font face
   #normal:
