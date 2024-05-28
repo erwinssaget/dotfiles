@@ -16,20 +16,15 @@ Plugin 'dense-analysis/ale'                   " Linter
 Plugin 'pangloss/vim-javascript'              " Javascript Support
 Plugin 'itchyny/lightline.vim'
 Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'sainnhe/edge'
-Plugin 'rust-lang/rust.vim'
-Plugin 'jidn/vim-dbml'
 Plugin 'tpope/vim-obsession'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'mhartington/oceanic-next'
 Plugin 'sainnhe/gruvbox-material'
-Plugin 'sainnhe/sonokai'
 Plugin 'neoclide/coc.nvim'
 call vundle#end()                             " End of plugins - required
 
@@ -134,7 +129,7 @@ map k gk
 " Make it easy to edit the Vimrc file
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
-nmap <C-p> :FZF<cr>
+nmap <C-p> :Files<cr>
 
 " To unfold using space bar
 nnoremap <space> za
