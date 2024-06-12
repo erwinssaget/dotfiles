@@ -24,8 +24,8 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-obsession'
-Plugin 'sainnhe/gruvbox-material'
 Plugin 'neoclide/coc.nvim'
+Plugin 'sainnhe/everforest'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
@@ -49,17 +49,16 @@ set mouse=a
 set signcolumn=yes
 set shiftround
 set background=dark
-set t_Co=256
 set cursorline
-if (has("termguicolors"))
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-let &t_ZH="\e[3m"
-let &t_ZR="\e[23m"
 
-let g:gruvbox_material_background = 'soft'
-let g:gruvbox_material_enable_italic = 1
-colorscheme gruvbox-material
+let g:everforest_background = 'dark'
+let g:everforest_better_performance = 1
+colorscheme everforest
 
 " Snippets
 map <Leader>es :tabedit ~/.vim/snippets/
@@ -74,7 +73,7 @@ let g:gitgutter_map_keys=0
 let g:gitgutter_set_sign_backgrounds = 1
 
 let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox_material'
+let g:lightline.colorscheme = 'everforest'
 
 "Coc extenstions
 let g:coc_global_extenstions = ['coc-tsserver']
@@ -85,13 +84,8 @@ highlight clear ALEWarningSign
 let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_delay = 1000
 
-let g:ale_rust_rls_executable = '/Users/erwinssaget/.cargo/bin/rls'
-let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_fix_on_save = 1
-let g:ale_linters = {
-\   'rust': ['rls'],
-\ }
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
