@@ -25,7 +25,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-obsession'
 Plugin 'neoclide/coc.nvim'
-Plugin 'sainnhe/everforest'
+Plugin 'nordtheme/vim'
 call vundle#end()                             " End of plugins - required
 
 filetype plugin indent on                     " required
@@ -50,15 +50,19 @@ set signcolumn=yes
 set shiftround
 set background=dark
 set cursorline
+set ttyfast
+set lazyredraw
+set updatetime=300
+set re=0
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
 
-let g:everforest_background = 'dark'
-let g:everforest_better_performance = 1
-colorscheme everforest
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+colorscheme nord
 
 " Snippets
 map <Leader>es :tabedit ~/.vim/snippets/
@@ -73,7 +77,7 @@ let g:gitgutter_map_keys=0
 let g:gitgutter_set_sign_backgrounds = 1
 
 let g:lightline = {}
-let g:lightline.colorscheme = 'everforest'
+let g:lightline.colorscheme = 'nord'
 
 "Coc extenstions
 let g:coc_global_extenstions = ['coc-tsserver']
